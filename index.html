@@ -37,18 +37,13 @@
 			$("button").click(function(){
 			   var t = $('#temp').val();//celsius
 			   var u = $('#unit').val();
-			   
-			   if(isNaN(t)){
-					msg = "Please verify whether the temperature value is correct!!!";
-					alert(msg);
-					return;
-			   }
-			   if(!(t >= -100 && t <= 100)){
-					msg = "Tempurature entered (in Celsius) must be between 0 and 100 C'";
-					alert(msg);
-					return;
-			   }
-			   
+			   				  
+			   var validationMessage = validateTemperature(t);
+               if (validationMessage) {
+               alert(validationMessage);
+               return;
+               }
+
 			   var t1;
 			   var u1;
 			   
@@ -66,6 +61,13 @@
 			   alert("Temperature is "+t1+" in "+u1);
 			});
 		});
+		function validateTemperature(t) {
+           if (isNaN(t)) {
+        return "Please verify whether the temperature value is correct!!!";}
+           if (!(t >= -100 && t <= 100)) {
+        return "Temperature entered (in Celsius) must be between -100 and 100 C";}
+        return null;
+}
 	</script>
 </body>
 </html>
